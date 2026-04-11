@@ -51,4 +51,13 @@ export const EXPERIENCE = [
   }
 ];
 
-export const VAULT_IDEAS = ['Credora', 'UniSync', 'VibeViz', 'Labyrinth', 'Repo Rizz'];
+export const VAULT_IDEAS = [
+  { title: 'Credora', image: '/vault_credora.png', category: 'Finance' },
+  { title: 'VibeViz', image: '/vault_vibeviz.png', category: 'Data Viz' },
+  { title: 'Labyrinth', image: '/vault_labyrinth.png', category: 'Logic' },
+  { title: 'UniSync', image: '/vault_unisync.png', category: 'productivity' },
+  { title: 'Repo Rizz', image: '/vault_vibeviz.png', category: 'AI Tools' },
+  { title: 'CodeSync', image: '/vault_unisync.png', category: 'DevOps' },
+  { title: 'MetaMind', image: '/vault_labyrinth.png', category: 'Future Tech' },
+  { title: 'Nexus', image: '/vault_credora.png', category: 'Blockchain' }
+];

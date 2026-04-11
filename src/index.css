@@ -469,30 +469,96 @@ input:focus, textarea:focus {
     cursor: not-allowed;
 }
 
-/* Vault Section */
+/* Vault Section (Galleria) */
+.vault-section {
+    padding-bottom: 150px;
+}
+
 .vault-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-top: 3rem;
 }
 
 .vault-card {
-    padding: 14px 28px;
-    background: rgba(255, 255, 255, 0.03);
+    position: relative;
+    height: 350px;
+    border-radius: 24px;
+    overflow: hidden;
+    background: #000;
     border: 1px solid var(--border-color);
-    border-radius: 100px;
-    font-weight: 600;
-    color: var(--text-muted);
     cursor: pointer;
-    transition: all 0.3s ease;
 }
 
-.vault-card:hover {
-    background: #fff;
-    color: #000;
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+.vault-card-img-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.vault-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.6;
+    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.vault-card:hover .vault-card-img {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.vault-card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 24px;
+    background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, transparent 100%);
+    z-index: 2;
+}
+
+.vault-category {
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent-red);
+    margin-bottom: 8px;
+    display: block;
+}
+
+.vault-card-title {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #fff;
+    margin: 0;
+}
+
+.vault-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: inset 0 0 100px rgba(0,0,0,0.5);
+    pointer-events: none;
+}
+
+@media (max-width: 1200px) {
+    .vault-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 900px) {
+    .vault-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+    .vault-grid { grid-template-columns: 1fr; }
+    .vault-card { height: 300px; }
 }
 
 /* Footer */

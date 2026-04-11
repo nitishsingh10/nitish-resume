@@ -6,15 +6,31 @@ const ContactForm = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [status, setStatus] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus('Sending...');
-    // Simulate API call
-    setTimeout(() => {
-      setStatus('Success! Nitish will get back to you soon.');
-      setFormData({ name: '', email: '', message: '' });
-      setTimeout(() => setStatus(''), 5000);
-    }, 1500);
+
+    // REPLACE 'YOUR_FORMSPREE_ID' with your actual Formspree ID
+    const FORMSPREE_ID = 'mjgpnlod';
+    const endpoint = `https://formspree.io/f/${FORMSPREE_ID}`;
+
+    try {
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setStatus('Success! Nitish will get back to you soon.');
+        setFormData({ name: '', email: '', message: '' });
+        setTimeout(() => setStatus(''), 5000);
+      } else {
+        setStatus('Something went wrong. Please try again.');
+      }
+    } catch (error) {
+      setStatus('Unable to send. Please check your connection.');
+    }
   };
 
   const handleChange = (e) => {
@@ -25,7 +41,7 @@ const ContactForm = () => {
   return (
     <section id="contact">
       <div className="contact-container">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
@@ -36,19 +52,19 @@ const ContactForm = () => {
           <div className="contact-info">
             <div className="contact-name">Nitish Singh</div>
             <div className="contact-socials">
-              <a 
-                href="https://github.com/nitishsingh10" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="https://github.com/nitishsingh10"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="contact-social-link"
                 title="GitHub"
               >
                 <Github size={24} />
               </a>
-              <a 
-                href="https://linkedin.com/in/nitish-singh-001" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="https://linkedin.com/in/nitish-singh-001"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="contact-social-link"
                 title="LinkedIn"
               >
@@ -57,8 +73,8 @@ const ContactForm = () => {
             </div>
           </div>
         </motion.div>
-        
-        <motion.div 
+
+        <motion.div
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
@@ -68,31 +84,31 @@ const ContactForm = () => {
           <h2>Let's work together</h2>
           <form onSubmit={handleSubmit}>
             <div className="form-group">
-              <input 
-                type="text" 
+              <input
+                type="text"
                 name="name"
-                placeholder="Full Name" 
-                required 
+                placeholder="Full Name"
+                required
                 value={formData.name}
                 onChange={handleChange}
               />
             </div>
             <div className="form-group">
-              <input 
-                type="email" 
+              <input
+                type="email"
                 name="email"
-                placeholder="Email" 
-                required 
+                placeholder="Email"
+                required
                 value={formData.email}
                 onChange={handleChange}
               />
             </div>
             <div className="form-group">
-              <textarea 
+              <textarea
                 name="message"
-                placeholder="Message" 
-                rows="5" 
-                required 
+                placeholder="Message"
+                rows="5"
+                required
                 value={formData.message}
                 onChange={handleChange}
               ></textarea>
