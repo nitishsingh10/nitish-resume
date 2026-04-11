@@ -25,7 +25,11 @@ const Skills = () => {
                 ))}
               </div>
             ) : (
-              <p>{skill.items.join(', ')}</p>
+              <div className="skills-list">
+                {skill.items.map((item) => (
+                  <span key={item}>{item}</span>
+                ))}
+              </div>
             )}
           </motion.div>
         ))}
