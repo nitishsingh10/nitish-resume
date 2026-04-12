@@ -5,18 +5,18 @@ import { PROJECTS } from '../constants';
 
 const Projects = () => {
   return (
-    <section id="work">
+    <section id="work" className="section-padding">
       <motion.h2 
         initial={{ opacity: 0, x: -20 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
-        className="section-title"
+        className="font-plus-jakarta"
       >
         Featured Projects
       </motion.h2>
       
-      <div className="project-grid">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[30px] w-full">
         {PROJECTS.map((project, index) => (
           <motion.a
             key={project.id}
@@ -28,38 +28,32 @@ const Projects = () => {
             whileHover={{ y: -15 }}
             transition={{ duration: 0.6, delay: index * 0.1, ease: [0.165, 0.84, 0.44, 1] }}
             viewport={{ once: true }}
-            className="card project-card"
-            style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}
+            className="glass-card p-[clamp(24px,5vw,40px)] group transition-all duration-300 no-underline text-inherit block"
           >
-            <div className="project-img-wrapper" style={{ overflow: 'hidden', position: 'relative' }}>
+            <div className="w-full h-[300px] overflow-hidden relative rounded-[calc(var(--radius-card)-12px)] mb-6">
                 {project.image ? (
-                <img src={project.image} alt={project.title} className="project-img" style={{ width: '100%', display: 'block' }} />
+                  <img 
+                    src={project.image} 
+                    alt={project.title} 
+                    className="w-full h-full object-cover transition-transform duration-600 ease-[cubic-bezier(0.165,0.84,0.44,1)] group-hover:scale-105" 
+                  />
                 ) : (
-                <div className="project-img-placeholder" style={{ 
-                    background: 'linear-gradient(45deg, #111, #222)', 
-                    height: '280px',
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    justifyContent: 'center' 
-                }}>
-                    <Layout size={48} color="#444" />
-                </div>
+                  <div className="w-full h-full flex items-center justify-center bg-linear-to-br from-[#111] to-[#222]">
+                    <Layout size={48} className="text-[#444]" />
+                  </div>
                 )}
-                <div className="project-overlay" style={{
-                    position: 'absolute',
-                    top: 0, left: 0, width: '100%', height: '100%',
-                    background: 'linear-gradient(0deg, rgba(0,0,0,0.8) 0%, transparent 60%)',
-                    opacity: 0,
-                    transition: 'opacity 0.3s ease'
-                }}></div>
+                <div className="absolute inset-0 bg-black/0 transition-colors group-hover:bg-black/10"></div>
             </div>
             
             <div className="project-info">
-              <h3 style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
+              <h3 className="flex items-center justify-between mb-3">
                 {project.title}
-                <ArrowUpRight size={20} className="arrow-icon" style={{ opacity: 0.5, transition: 'all 0.3s ease' }} />
+                <ArrowUpRight 
+                  size={20} 
+                  className="opacity-50 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1" 
+                />
               </h3>
-              <p style={{ fontSize: '1rem', lineHeight: '1.6' }}>{project.description}</p>
+              <p className="text-base leading-relaxed">{project.description}</p>
             </div>
           </motion.a>
         ))}

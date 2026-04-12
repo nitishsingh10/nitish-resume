@@ -30,7 +30,7 @@ function App() {
   }, []);
 
   return (
-    <div className="portfolio-app">
+    <div className="min-h-screen bg-bg-black text-text-primary">
       {/* Scroll Progress Bar */}
       <motion.div className="scroll-progress" style={{ scaleX }} />
 
@@ -63,7 +63,7 @@ function App() {
 
       <Navbar />
       
-      <main>
+      <main className="relative z-10">
         <Hero />
         <Experience />
         <Skills />
