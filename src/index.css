@@ -20,36 +20,85 @@
     --card-radius: 28px;
 }
 
+/* 1. Global Reset & Safety Guards */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box; /* Crucial: Padding won't break width */
     cursor: default;
 }
 
-html {
-    scroll-behavior: smooth;
-    overflow-x: hidden;
-}
-
-body {
+html, body {
     background-color: var(--bg-black);
     color: var(--text-primary);
     font-family: 'Plus Jakarta Sans', sans-serif;
     line-height: 1.5;
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden; /* Prevent horizontal scroll at all costs */
     width: 100%;
+    -webkit-font-smoothing: antialiased;
 }
 
-/* Typography with Clamp for Responsiveness */
-h1 { font-size: clamp(2.5rem, 8vw, 5.5rem); }
-h2 { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 2rem; }
-h3 { font-size: clamp(1.2rem, 3vw, 1.8rem); }
+img, video, svg {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Typography with Fluid Scaling */
+h1 { font-size: clamp(2.2rem, 8vw, 5.5rem); letter-spacing: -0.04em; }
+h2 { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 2.5rem; letter-spacing: -0.03em; }
+h3 { font-size: clamp(1.2rem, 3vw, 1.8rem); font-weight: 700; }
 
 p {
     color: var(--text-muted);
-    font-size: clamp(0.9rem, 1.1vw, 1.15rem);
+    font-size: clamp(0.95rem, 1.2vw, 1.15rem);
+}
+
+/* Scroll Progress */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-red), var(--accent-magenta));
+    transform-origin: 0%;
+    z-index: 2000;
+}
+
+/* Background Gradients (Dynamic Orbs) */
+.background-glow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.2;
+}
+
+.orb-1 {
+    width: clamp(300px, 80vw, 800px);
+    height: clamp(300px, 80vw, 800px);
+    top: -100px;
+    right: -100px;
+    background: radial-gradient(circle, var(--accent-red), transparent 70%);
+}
+
+.orb-2 {
+    width: clamp(250px, 60vw, 600px);
+    height: clamp(250px, 60vw, 600px);
+    bottom: -100px;
+    left: -100px;
+    background: radial-gradient(circle, var(--accent-purple), transparent 70%);
 }
 
 /* Header & Navbar */
@@ -65,7 +114,7 @@ header {
 
 nav {
     width: 100%;
-    max-width: 1200px;
+    max-width: 1100px;
     height: 64px;
     background: rgba(15, 15, 15, 0.4);
     backdrop-filter: var(--glass-blur);
@@ -75,68 +124,35 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 0 24px;
-    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-nav.scrolled {
-    width: 85%;
-    background: rgba(0, 0, 0, 0.8);
-}
+.logo { font-weight: 800; font-size: 1.2rem; }
 
-.logo {
-    font-weight: 800;
-    font-size: 1.2rem;
-    letter-spacing: -1px;
-    z-index: 1001;
-}
-
-.nav-links {
-    display: flex;
-    gap: 32px;
-    list-style: none;
-}
-
+.nav-links { display: flex; gap: 32px; list-style: none; }
 .nav-links a {
     color: var(--text-muted);
     text-decoration: none;
     font-size: 0.85rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
     transition: color 0.3s ease;
 }
 
-.nav-links a:hover { color: var(--text-primary); }
-
-.contact-btn {
-    padding: 10px 24px;
-    background: #fff;
-    color: #000;
-    border-radius: 100px;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 0.8rem;
-    transition: all 0.3s ease;
-}
-
-/* Mobile Menu Button */
 .mobile-menu-btn {
     display: none;
     background: none;
     border: none;
     color: #fff;
-    cursor: pointer;
     z-index: 1001;
 }
 
-/* Mobile Navigation Overlay */
 .mobile-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100vh;
-    background: rgba(0,0,0,0.95);
+    background: rgba(0,0,0,0.98);
     backdrop-filter: blur(15px);
     z-index: 1000;
     display: flex;
@@ -146,19 +162,6 @@ nav.scrolled {
     gap: 40px;
 }
 
-.mobile-nav-link {
-    font-size: 2rem;
-    font-weight: 800;
-    color: #fff;
-    text-decoration: none;
-    letter-spacing: -2px;
-}
-
-/* Sections */
-section {
-    padding: var(--section-padding);
-}
-
 /* Hero Section */
 .hero {
     min-height: 100vh;
@@ -166,126 +169,126 @@ section {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 140px 15px 60px;
     text-align: center;
-    padding-top: 120px;
-    padding-bottom: 60px;
-}
-
-.tagline {
-    font-size: 0.9rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
 }
 
 .hero-headline {
-    max-width: 90%;
-    line-height: 1;
+    width: 100%;
+    max-width: 1000px;
+    margin-bottom: 2rem;
 }
 
 .profile-frame {
     position: relative;
-    width: clamp(280px, 40vw, 380px);
-    height: clamp(350px, 50vw, 480px);
+    width: clamp(280px, 90vw, 380px);
+    height: clamp(350px, 110vw, 480px);
     margin-top: 40px;
 }
 
 .hero-glow-orb {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 120%;
     height: 120%;
+    background: radial-gradient(circle, var(--accent-red) 0%, transparent 70%);
+    filter: blur(40px);
+    opacity: 0.7;
+    z-index: -1;
 }
 
 .profile-img-container {
-    border-radius: 24px;
+    width: 100%;
+    height: 100%;
+    border-radius: 28px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .signature {
-    font-size: clamp(2.5rem, 6vw, 4rem);
-    right: -20px;
-    bottom: 10px;
-}
-
-.available-badge {
-    font-size: 0.65rem;
-    padding: 6px 12px;
+    position: absolute;
+    bottom: -10px;
     right: -10px;
-    bottom: 20%;
-    top: auto;
+    font-family: 'Signature', cursive;
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    color: #fff;
+    transform: rotate(-10deg);
 }
 
-/* Skills Fix */
-.skills-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 15px;
-}
+/* Grid & Layout Refinement */
+section { padding: var(--section-padding); }
 
-.skills-list span {
-    padding: 6px 14px;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid var(--border-color);
-    border-radius: 50px;
-    font-size: 0.85rem;
-    color: var(--text-muted);
-}
-
-/* Projects Grid */
 .project-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    width: 100%;
 }
 
-/* Contact Section Fix */
+.card {
+    width: 100%;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--card-radius);
+    padding: clamp(20px, 5vw, 40px);
+    backdrop-filter: var(--glass-blur);
+}
+
+/* Contact Section (Anti-Distortion Fix) */
 .contact-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 40px;
+    gap: 60px;
     width: 100%;
+    max-width: 100%;
 }
 
 .contact-left {
-    height: auto;
-    min-height: 250px;
-}
-
-.contact-form-card {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
 }
 
-/* Vault Section */
+.contact-name {
+    font-size: clamp(2.5rem, 10vw, 4.5rem);
+    width: 100%;
+    text-align: center;
+}
+
+.contact-info { width: 100%; }
+
+/* Vault Gallery */
 .vault-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 20px;
+    width: 100%;
 }
-
-.vault-card { height: 300px; }
 
 /* Responsive Overrides */
 @media (max-width: 1024px) {
     :root { --section-padding: 100px 5%; }
-    .project-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 900px) {
-    .contact-container { grid-template-columns: 1fr; }
-    .contact-left { margin-bottom: 20px; }
+    .contact-container { grid-template-columns: 1fr; gap: 40px; }
 }
 
 @media (max-width: 768px) {
+    :root { --section-padding: 80px 15px; }
     .nav-links, .contact-btn { display: none; }
     .mobile-menu-btn { display: block; }
-    header { padding: 16px; }
-    nav { padding: 0 16px; width: 100%; }
-    :root { --section-padding: 80px 20px; }
-    
-    .hero { padding-top: 100px; }
-    .signature { right: 0; bottom: -10px; }
+    nav { height: 56px; border-radius: 100px; width: 100%; }
+    .signature { bottom: -20px; right: 0; }
+    .orb { filter: blur(60px); opacity: 0.15; }
 }
 
 @media (max-width: 480px) {
-    .hero-headline { width: 100%; }
-    .profile-frame { width: 280px; height: 350px; }
-    .contact-name { font-size: 3rem; }
+    .profile-frame { height: 400px; }
+    input, textarea { padding: 12px; }
 }
