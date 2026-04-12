@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&family=MonteCarlo&display=swap');
-
 @import "tailwindcss";
 
 @theme {
@@ -35,12 +34,24 @@
     @apply max-w-full h-auto block;
   }
 
-  h1 { @apply text-[clamp(2.2rem,8vw,5.5rem)] tracking-tighter; }
-  h2 { @apply text-[clamp(2rem,5vw,3.5rem)] mb-10 tracking-tight; }
-  h3 { @apply text-[clamp(1.2rem,3vw,1.8rem)] font-bold; }
+  h1 { 
+    font-size: clamp(2.2rem, 8vw, 5.5rem);
+    @apply tracking-tighter;
+  }
+
+  h2 { 
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    @apply mb-10 tracking-tight;
+  }
+
+  h3 { 
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    @apply font-bold;
+  }
 
   p {
-    @apply text-text-muted text-[clamp(0.95rem,1.2vw,1.15rem)];
+    @apply text-text-muted;
+    font-size: clamp(0.95rem, 1.2vw, 1.15rem);
   }
 }
 
