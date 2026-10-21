@@ -1,73 +1,44 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { motion, useScroll, useSpring } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import Projects from './components/Projects';
 import Experience from './components/Experience';
 import Skills from './components/Skills';
-import Projects from './components/Projects';
+import Services from './components/Services';
 import IdeaVault from './components/IdeaVault';
 import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
 
 function App() {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  });
-
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      setMousePos({
-        x: (e.clientX / window.innerWidth - 0.5) * 50,
-        y: (e.clientY / window.innerHeight - 0.5) * 50
-      });
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 28, restDelta: 0.001 });
 
   return (
-    <div className="min-h-screen bg-bg-black text-text-primary">
-      {/* Scroll Progress Bar */}
-      <motion.div className="scroll-progress" style={{ scaleX }} />
-
-      {/* Ambient Orbs (Premium Flow) */}
-      <div className="background-glow">
-        <motion.div 
-          className="orb orb-1"
-          animate={{ 
-            x: mousePos.x * 0.5, 
-            y: mousePos.y * 0.5,
-            scale: [1, 1.1, 1]
-          }}
-          transition={{ 
-            x: { type: 'spring', stiffness: 50, damping: 20 },
-            y: { type: 'spring', stiffness: 50, damping: 20 },
-            scale: { duration: 10, repeat: Infinity, ease: "easeInOut" }
-          }}
-        />
-        <motion.div 
-          className="orb orb-2"
-          animate={{ x: mousePos.x * -0.8, y: mousePos.y * -0.8 }}
-          transition={{ type: 'spring', stiffness: 40, damping: 25 }}
-        />
-        <motion.div 
-          className="orb orb-3"
-          animate={{ x: mousePos.x * 1.2, y: mousePos.y * 1.2 }}
-          transition={{ type: 'spring', stiffness: 60, damping: 15 }}
-        />
-      </div>
-
+    <div className="portfolio-app">
+      <a className="skip-link" href="#main-content">Skip to content</a>
+      <motion.div className="scroll-progress" style={{ scaleX }} aria-hidden="true" />
       <Navbar />
-      
-      <main className="relative z-10">
+
+      <main id="main-content">
         <Hero />
+        <div className="moving-ribbon" aria-hidden="true">
+          <div className="moving-ribbon-track">
+            {[0, 1].map((copy) => (
+              <div className="moving-ribbon-group" key={copy}>
+                <span>FULL-STACK</span><i>✳</i>
+                <span>APPLIED AI</span><i>✳</i>
+                <span>DEVELOPER TOOLS</span><i>✳</i>
+                <span>WEB3</span><i>✳</i>
+                <span>COMMUNITY</span><i>✳</i>
+              </div>
+            ))}
+          </div>
+        </div>
+        <Projects />
         <Experience />
         <Skills />
-        <Projects />
+        <Services />
         <IdeaVault />
         <ContactForm />
       </main>

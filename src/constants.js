@@ -1,61 +1,92 @@
 export const PROJECTS = [
   {
     id: 'devops',
+    number: '01',
     title: 'DevOps Release Commander',
-    description: 'RL DevOps AI Agent featuring an RL training environment simulating software release pipelines. Stack: Python, FastAPI, Docker.',
-    image: '/devops_project.png',
-    link: 'https://github.com/nitishsingh10/Devops-MetaPytorch'
+    eyebrow: 'REINFORCEMENT LEARNING · DEVOPS',
+    description:
+      'An RL agent and training environment for simulating software release pipelines. A hands-on exploration of how intelligent systems can navigate delivery workflows.',
+    image: '/projects/devops-release-commander.jpg',
+    tags: ['Python', 'FastAPI', 'Docker'],
+    link: 'https://github.com/nitishsingh10/Devops-MetaPytorch',
+    linkLabel: 'View repository',
   },
   {
     id: 'propchain',
+    number: '02',
     title: 'PropChain',
-    description: 'Web3 Hackathon Project. Decentralized real estate investment platform utilizing smart contracts for fractional property ownership.',
-    image: '/blockchain_project.png',
-    link: 'https://github.com/nitishsingh10/propchain'
+    eyebrow: 'WEB3 · HACKATHON CONCEPT',
+    description:
+      'A decentralized real-estate investment concept exploring fractional property ownership through smart contracts.',
+    image: '/projects/propchain.jpg',
+    tags: ['Smart contracts', 'Web3', 'DApps'],
+    link: 'https://github.com/nitishsingh10/propchain',
+    linkLabel: 'View repository',
   },
   {
     id: 'codelens',
+    number: '03',
     title: 'Code-DNA',
-    description: 'AI-Powered Developer Tool generating DSA problems, flashcards, and notes tailored to any submitted GitHub repository.',
-    image: '/ai_project.png',
-    link: 'https://github.com/nitishsingh10/Code-DNA'
+    eyebrow: 'AI · DEVELOPER LEARNING',
+    description:
+      'An AI-powered learning tool that turns a GitHub repository into tailored DSA problems, flashcards, and notes.',
+    image: '/projects/code-dna.jpg',
+    tags: ['AI', 'GitHub', 'DSA'],
+    link: 'https://github.com/nitishsingh10/Code-DNA',
+    linkLabel: 'View repository',
   },
   {
     id: 'college',
+    number: '04',
     title: 'PWIOI Tech Club',
-    description: 'Official platform for PW Institute of Innovation tech community, managing events, resources and student collaborations.',
-    image: null,
-    link: 'https://www.pwioi.club/'
-  }
+    eyebrow: 'COMMUNITY · WEB PLATFORM',
+    description:
+      'A platform for the PW Institute of Innovation tech community, bringing events, resources, and student collaboration together.',
+    image: '/projects/pwioi-tech-club.jpg',
+    tags: ['Community', 'Events', 'Web'],
+    link: 'https://www.pwioi.club/',
+    linkLabel: 'Visit the platform',
+  },
 ];
 
 export const SKILLS = [
-  { category: 'Programming Languages', items: ['C', 'C++', 'Java', 'JavaScript', 'Python'] },
-  { category: 'Web Development', items: ['MongoDB', 'Express.js', 'React.js', 'Node.js'] },
-  { category: 'AI/ML & Blockchain', items: ['Reinforcement Learning', 'Smart Contracts', 'DApps', 'Web3.js'] },
-  { category: 'DevOps & Infra', items: ['Docker', 'REST APIs', 'CI/CD Pipelines'] }
+  { category: 'Languages', items: ['C', 'C++', 'Java', 'JavaScript', 'Python'] },
+  { category: 'Web development', items: ['MongoDB', 'Express.js', 'React.js', 'Node.js', 'FastAPI', 'Spring', 'REST APIs'] },
+  { category: 'AI & Web3', items: ['Reinforcement Learning', 'Smart Contracts', 'DApps', 'Web3.js'] },
+  { category: 'Tools & infrastructure', items: ['Docker', 'CI/CD Pipelines'] },
 ];
 
 export const EXPERIENCE = [
   {
-    title: 'B.Tech in CS (AI/ML)',
-    meta: 'PW Institute of Innovation | 2025 - 2029',
-    description: 'Specializing in Artificial Intelligence and Machine Learning with a focus on practical implementation and scalable architectures.',
-    icon: 'GraduationCap'
+    year: '2025 — 2029',
+    title: 'B.Tech, Computer Science (AI/ML)',
+    place: 'PW Institute of Innovation',
+    description:
+      'Studying computer science with a focus on artificial intelligence and machine learning, and putting ideas into practice through projects.',
+    kind: 'Education',
   },
   {
-    title: 'Core Member - Tech Club',
-    meta: '2025 - Present',
-    description: 'Organizing tech events, hackathons, and mentoring peers in web development. Driving the tech community forward within the institute.',
-    icon: 'Users'
-  }
+    year: '2025 — Present',
+    title: 'Core Member, Tech Club',
+    place: 'PW Institute of Innovation',
+    description:
+      'Helping bring the campus tech community together through events, hackathons, and peer learning in web development.',
+    kind: 'Community',
+  },
 ];
 
 export const VAULT_IDEAS = [
-  { title: 'Credora', image: '/vault_credora.png', category: 'Finance' },
-  { title: 'UniSync', image: '/vault_unisync.png', category: 'Productivity' },
-  { title: 'Labyrinth', image: '/vault_labyrinth.png', category: 'Logic' },
-  { title: 'MetaMind', image: '/vault_labyrinth.png', category: 'Future Tech' },
-  { title: 'VibeViz', image: '/vault_vibeviz.png', category: 'Data Viz' },
-  { title: 'ARIA', image: '/vault_vibeviz.png', category: 'AI OS' }
+  { title: 'Credora', category: 'Finance' },
+  { title: 'UniSync', category: 'Productivity' },
+  { title: 'Labyrinth', category: 'Logic' },
+  { title: 'MetaMind', category: 'Future tech' },
+  { title: 'VibeViz', category: 'Data visualization' },
+  { title: 'ARIA', category: 'AI interface' },
 ];
+
+export const CONTACT = {
+  email: 'connect@nitishsingh.in',
+  phone: '+91 93214 83542',
+  github: 'https://github.com/nitishsingh10',
+  linkedin: 'https://linkedin.com/in/nitish-singh-001',
+};
